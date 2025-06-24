@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            background-color: #000;
+            font: italic bold 15px monospace;
+            text-align: justify;
+            color: black;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: black;
+            text-align: justify;
+            font-size: 3em;
+        }
+
+        p {
+            text-align: justify;
+            text-transform: capitalize;
+            font-size: 2em;
+        }
+
+        input {
+            text-align: center;
+            text-transform: lowercase;
+        }
+
+        button {
+            color: azure;
+            background-color: #000;
+            bottom: -50px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Verificador de Número: Positivo, negativo ou zero</title>
+    <link rel="stylesheet" href="style.css"> <!-- Importa o CSS -->
+</head>
+
+<body>
+    <h1>Verifique o número</h1>
+    <p>Digite um número:</p>
+    <input type="number" id="numero" placeholder="Ex: -5">
+    <button onclick="verificarNumero()">Verificar</button>
+    <p id="resultado"></p>
+
+    <script src="script.js"></script>
+    <script>
+        function verificarNumero() {
+            const valor = parseFloat(document.getElementById("numero").value);
+            let mensagem = "";
+
+            if (isNaN(valor)) {
+                mensagem = "Por favor, digite um número válido.";
+            } else if (valor > 0) {
+                mensagem = "O número é positivo.";
+            } else if (valor < 0) {
+                mensagem = "O número é negativo.";
+            } else {
+                mensagem = "O número é zero.";
+            }
+
+            document.getElementById("resultado").innerText = mensagem;
+        }
+    </script>
+</body>
+
+</html>
