@@ -1,0 +1,49 @@
+<!docytpe html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Weather app</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+<div class="card">
+    <div class="search">
+        <input type="text" placeholder="Nome da cidade" spellcheck="false">
+        <button><img src="img/pngwing.com (7).png"></button>
+    </div>
+    <div class="weather">
+        <img src="img/pngwing.com (1).png" class="weather-icon">
+        <h1 class="temp">16°c</h1>
+        <h2 class="city">Juiz de Fora</h2>
+        <div class="datails">
+            <div class="col">
+                <img src="img/pexels-jagan-ram-1479982983-26932189.jpg">
+                <div>
+                    <p class="humidade">65%</p>
+                    <p>Humidade</p>
+                </div>
+                 <div class="col">
+                <img src="img/pngwing.com (6).png">
+                <div>
+                    <p class="vento">7 km/h</p>
+                    <p>Velocidade do vento</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const apiKey = "488992aaaf90d8f07f0d0a6faeaf54";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&RiodeJaneiro";
+
+async function checkWeather() {
+    const response = await fetch(apiUrl + '&appid=${apiKey}');
+    var data = await respose.json();
+
+    console.log(data);
+}
+</script>
+
+    </body>
+</html>
