@@ -5,6 +5,8 @@
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
         <title>Weather app</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     </head>
     <body>
 <div class="card">
@@ -35,14 +37,46 @@
 </div>
 <script>
     const apiKey = "488992aaaf90d8f07f0d0a6faeaf54";
-    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&RiodeJaneiro";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-async function checkWeather() {
-    const response = await fetch(apiUrl + '&appid=${apiKey}');
+    const searchBox = document.querySelector(".search input");
+    const searchBtn = document.querySelector(".search button");
+    const weatherIcon = document.querySelector(".weather-icon");
+
+async function checkWeather(city) {
+    const response = await fetch(apiUrl + city + '&appid=${apiKey}');
     var data = await respose.json();
 
-    console.log(data);
+    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".temp").innerHTML = math.round(data.main.temp) + "°c";
+    document.querySelector(".humidade").innerHTML = data.main.humidade + "%";
+    document.querySelector(".vento").innerHTML = data.main.velocidadedovento + "km/h";
+
+    if(data.weather[0].main =="clouds"){
+        weatherIcon.src = "img/clouds.png";
+    }
+    else if(data.weather[0].main == "clear"){
+        weatherIcon.src = "img/clear.png";
+    }
+    else if(data.weather[0].main == "rain"){
+        weatherIcon.src = "img/rain.png";
+    }
+    else if(data.weather[0].main == "drizzle"){
+        weatherIcon.src = "img/drizzle.png";
+    }
+    else if(data.weather[0].main == "frio"){
+        weatherIcon.src = "img/frio.png";
+    }
+
+    document.querySelector(".weather").style.display = "block"
+
 }
+
+searchBtn.addEventListener("click",()=>{
+    checkWeather(search.value);
+})
+
+
 </script>
 
     </body>
